@@ -1,18 +1,19 @@
 public class Java0201 {
-    public String toLowerCase(String str) {
-        StringBuilder sBuilder = new StringBuilder();
-        for(int i = 0;i<str.length();i++) {
-            char t  =str.charAt(i);
-            if(t>=65 && t<=90) {
-                char temp = (char)(t+32);
-                sBuilder.append(temp);
-            }else {
-                sBuilder.append(t);
+    public  static String toLowerCase(String sc){
+        char[] scs = sc.toCharArray();
+        for(int i = 0;i<scs.length;i++){
+            if(scs[i]>='A'&&scs[i]<='Z'){
+                scs[i]+=32;
+            }else if(scs[i]>='a'&&scs[i]<='z'){
+                scs[i]-=32;
             }
         }
-        return sBuilder.toString();
+        String str = String.valueOf(scs);
+        return str;
     }
-    public static void main(String[] args){
+public static void main(String[] args){
+    String sc = "addscskUU";
+    System.out.println(toLowerCase(sc));
+}
 
     }
-}
