@@ -1,21 +1,21 @@
 public class Solution {
-    public void rotate(int[] arr, int k) {
-        int tmp, previous;
-        for (int i = 0; i < k; i++) {
-            previous = arr[arr.length - 1];
-            for (int j = 0; j < arr.length; j++) {
-                tmp = arr[j];
-                arr[j] = previous;
-                previous = tmp;
-            }
+    public boolean isPalindrome(int x) {
+        int res = 0;
+        int n = x;
+        if(x<0)
+        {return false;        }
+        do{
+            res = res*10+x%10;
+            x = x/10;
+        }while(x>0);
+        if(res == n){
+            return true;
         }
-        for(int t = 0;t<arr.length;t++){
-            System.out.print(arr[t]+" ");
-        }
+        return false;
     }
     public static void main(String[] args){
-        int[] arr = {1,2,3,4,5};
+        int x = 12321;
         Solution Solution = new Solution();
-        Solution.rotate(arr,2);
+        System.out.println(Solution.isPalindrome(x));
     }
 }
