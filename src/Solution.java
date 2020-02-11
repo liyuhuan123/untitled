@@ -1,26 +1,17 @@
 public class Solution {
-    public int lengthOfLastWord(String s) {
-        char[] str = s.toCharArray();
-        int count = 0;
-        if(s ==null||str.length == 0){
-            return 0;
-        }
-        for(int i = str.length-1;i>=0;i--){
-            if(str[i] == ' '){
-                if(count == 0){
-                    continue;
-                }else{
-                    break;
+    public boolean containsDuplicate(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] == nums[j]) {
+                    return true;
                 }
             }
-            count++;
         }
-        return count;
-
+        return false;
     }
     public static void main(String[] args){
-        String str = "hello wolad";
+        int[] nums = {1,2,3,41};
         Solution Solution = new Solution();
-        System.out.println(Solution.lengthOfLastWord(str));
+        System.out.println(Solution.containsDuplicate(nums));
     }
 }
