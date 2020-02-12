@@ -1,9 +1,27 @@
 public class Test{
-    public static void main(String[] args){
-        Java0201 Java = new Java0201();//调用不带参数的构造函数 如果程序没有提供会调用不带参数的构造函数
-                Java.show();
-        Java0201 Java1 = new Java0201("张飞",80,"男");
-        Java1.show();
-    }
+    public int[] sortedSquares(int[] A) {
+        int tmp;
+        for(int i = 0;i<A.length;i++){
+            A[i]   *= A[i];
+        }
+        for(int i = 0;i<A.length;i++){
+            for(int j = i;j<A.length;j++){
+                if(A[i]>A[j]){
+                    tmp = A[i];
+                    A[i] = A[j];
+                    A[j] = tmp;
 
+                }
+            }
+        }
+        return A;
+    }
+    public static void main(String[] args){
+        int[] A = {1,2,34};
+        Solution Solution = new Solution();
+        Solution.sortedSquares(A);
+        for(int i = 0;i<A.length;i++){
+            System.out.print(A[i]+" ");
+        }
+    }
 }
