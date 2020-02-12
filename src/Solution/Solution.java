@@ -1,34 +1,32 @@
 package Solution;
 
 public class Solution {
-    public String reverseOnlyLetters(String S) {
-        char[] sc = S.toCharArray();
+    public int[] sortArrayByParity(int[] A) {
         int left = 0;
-        if (S == null || S.length() == 0) {
-            return " ";
-        }
-        int right = sc.length - 1;
-        while (left < right) {
-            if (sc[left] >= 'A' && sc[left] <= 'Z' || sc[left] >= 'a' && sc[left] <= 'z') {
-                if (sc[right] >= 'A' && sc[right] <= 'Z' || sc[right] >= 'a' && sc[right] <= 'z') {
-                    char tmp = sc[left];
-                    sc[left] = sc[right];
-                    sc[right] = tmp;
-                    right--;
+        int right = A.length-1;
+        while(left<right){
+            if(A[left]%2 != 0){
+                if(A[right]%2 ==0){
+                    int tmp = A[left];
+                    A[left] = A[right];
+                    A[right] = tmp;
                     left++;
-                } else {
+                    right--;
+                }else{
                     right--;
                 }
-            } else {
+            }else{
                 left++;
             }
         }
-        String str = String.valueOf(sc);
-        return str;
+    return A;
     }
     public static void main(String[] args){
-        String S = "wo ai xi an";
+        int[] A = {1,2,3,4};
         Solution Solution = new Solution();
-        System.out.println(Solution.reverseOnlyLetters(S));
+        Solution.sortArrayByParity(A);
+        for(int i = 0;i<A.length;i++){
+            System.out.print(A[i]+" ");
+        }
     }
 }
