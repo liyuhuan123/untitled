@@ -1,29 +1,27 @@
 public class Solution {
-    public boolean isLongPressedName(String name, String typed) {
-        char[] na = name.toCharArray();//字符串转化为字符数组
-        char[] ty = typed.toCharArray();//字符串转化为字符数组
-        int i = 0;
-        int j = 0;
-        if(na.length>ty.length){
-            return false;
+    public int[] sortedSquares(int[] A) {
+        int tmp;
+        for(int i = 0;i<A.length;i++){
+            A[i]   *= A[i];
         }
-        while(i<na.length&&j<ty.length){
-            if(na[i] == ty[j]){
-                i++;
-                j++;
-            }else{
-                j++;
-            }
-            if(i == na.length){
-                return true;
+        for(int i = 0;i<A.length;i++){
+            for(int j = i;j<A.length;j++){
+                if(A[i]>A[j]){
+                    tmp = A[i];
+                    A[i] = A[j];
+                    A[j] = tmp;
+
+                }
             }
         }
-        return false;
+        return A;
     }
     public static void main(String[] args){
-        String name = "xiaoli";
-        String typed = "xiaol";
+        int[] A = {1,2,34};
         Solution Solution = new Solution();
-        System.out.println(Solution.isLongPressedName(name,typed));
+        Solution.sortedSquares(A);
+        for(int i = 0;i<A.length;i++){
+            System.out.print(A[i]+" ");
+        }
     }
 }
