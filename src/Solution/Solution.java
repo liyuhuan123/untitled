@@ -1,17 +1,21 @@
 package Solution;
 import java.util.Arrays;
 public class Solution {
-    public int thirdMax(int[] nums) {
-        Arrays.sort(nums);
-        if(nums.length<3)
-            return nums[nums.length-1];
-        else
-            return nums[nums.length-3];
+    public int[] twoSum(int[] nums, int target) {
+        int[] arr = new int[2];
+        int x = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return nums;
     }
     public static void main(String[] args){
-        int[] arr = {1,2,3,4,54};
+        int[] nums = {3,2,4};
         Solution Solution = new Solution();
-        System.out.println(Solution.thirdMax(arr));
+        System.out.println(Arrays.toString(Solution.twoSum(nums,6)));
     }
 }
-
