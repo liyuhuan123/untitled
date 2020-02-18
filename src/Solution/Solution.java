@@ -1,21 +1,58 @@
 package Solution;
 import java.util.Arrays;
 public class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        int[] arr = new int[2];
-        int x = 0;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i+1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target) {
-                    return new int[]{i,j};
-                }
+    public int myAtoi(String str) {
+        //1.判断字符串是否为空
+        char[] arr = str.toCharArray();
+        int i = 0;
+        while (i < arr.length) {
+            if (arr[i] != ' ') {
+                break;
+            }
+            i++;
+            if (i == arr.length) {
+                return 0;
             }
         }
-        return nums;
+        //2.判断符号位
+        int sign = 1;
+        if (arr[i] == '-') {
+            sign = -1;
+            i++;
+        } else if (arr[i] == '+') {
+            sign = 1;
+            i++;
+        }
+        //3.判断字符合法性
+        int result = 0;
+        int[] res = new int[arr.length];
+        int x = 0;
+        int j = i;
+        while (i < arr.length) {
+            if (arr[i] < '0' || arr[i] > '9') {
+                break;
+            } else {
+                res[x] = arr[i];
+                i++;
+                x++;
+            }
+        }
+        if (i > j) {
+            String ress = String.valueOf(res);
+            result = Integer.parseInt(ress);
+            if(result > Integer.MAX_VALUE){
+                return Integer.MAX_VALUE*sign;
+            }else if (result < Integer.MIN_VALUE) {
+                return Integer.MIN_VALUE*sign;
+            }else{
+                return result*sign;
+            }
+        }
+        return result;
     }
     public static void main(String[] args){
-        int[] nums = {3,2,4};
+        String str = "1234wewr";
         Solution Solution = new Solution();
-        System.out.println(Arrays.toString(Solution.twoSum(nums,6)));
+        System.out.println(Solution.myAtoi(str));
     }
 }
