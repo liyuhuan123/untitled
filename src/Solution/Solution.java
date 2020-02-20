@@ -1,58 +1,47 @@
 package Solution;
 import java.util.Arrays;
 public class Solution {
-    public int myAtoi(String str) {
-        //1.判断字符串是否为空
-        char[] arr = str.toCharArray();
-        int i = 0;
-        while (i < arr.length) {
-            if (arr[i] != ' ') {
+    public int[] searchRange(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+        int result[] = {-1,-1};
+        if(nums.length==0) return result;
+        int matchedCount = 0;
+        while(start <= end) {
+            int mid = start + (end-start)/2;
+            if(nums[mid] == target) {
+                int sentry = mid;
+                //left
+                while(sentry>0 && nums[--sentry]== target) {
+                }
+                if(sentry == 0 && nums[sentry] == target){
+                    result[matchedCount++] = sentry;
+                }else{
+                    result[matchedCount++] = sentry+1;
+                }
+
+                sentry = mid;
+                // right
+                while(sentry<nums.length-1 && nums[++sentry] == target) {
+                }
+                if(sentry == nums.length-1 && nums[sentry] == target) {
+                    result[matchedCount] = sentry;
+                }else{
+                    result[matchedCount] = sentry-1;
+                }
                 break;
-            }
-            i++;
-            if (i == arr.length) {
-                return 0;
-            }
-        }
-        //2.判断符号位
-        int sign = 1;
-        if (arr[i] == '-') {
-            sign = -1;
-            i++;
-        } else if (arr[i] == '+') {
-            sign = 1;
-            i++;
-        }
-        //3.判断字符合法性
-        int result = 0;
-        int[] res = new int[arr.length];
-        int x = 0;
-        int j = i;
-        while (i < arr.length) {
-            if (arr[i] < '0' || arr[i] > '9') {
-                break;
-            } else {
-                res[x] = arr[i];
-                i++;
-                x++;
-            }
-        }
-        if (i > j) {
-            String ress = String.valueOf(res);
-            result = Integer.parseInt(ress);
-            if(result > Integer.MAX_VALUE){
-                return Integer.MAX_VALUE*sign;
-            }else if (result < Integer.MIN_VALUE) {
-                return Integer.MIN_VALUE*sign;
+            }else if(nums[mid]< target){
+                start = mid + 1;
             }else{
-                return result*sign;
+                end = mid-1;
             }
         }
+
         return result;
     }
     public static void main(String[] args){
-        String str = "1234wewr";
+        int[] arr = {1,2,2,3,4,5};
         Solution Solution = new Solution();
-        System.out.println(Solution.myAtoi(str));
+        System.out.println(Arrays.toString(Solution.searchRange(arr,2)));
     }
 }
