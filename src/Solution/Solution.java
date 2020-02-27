@@ -1,47 +1,39 @@
 package Solution;
 import java.util.Arrays;
-public class Solution {
-    public int[] searchRange(int[] nums, int target) {
-        int start = 0;
-        int end = nums.length-1;
-        int result[] = {-1,-1};
-        if(nums.length==0) return result;
-        int matchedCount = 0;
-        while(start <= end) {
-            int mid = start + (end-start)/2;
-            if(nums[mid] == target) {
-                int sentry = mid;
-                //left
-                while(sentry>0 && nums[--sentry]== target) {
-                }
-                if(sentry == 0 && nums[sentry] == target){
-                    result[matchedCount++] = sentry;
-                }else{
-                    result[matchedCount++] = sentry+1;
-                }
-
-                sentry = mid;
-                // right
-                while(sentry<nums.length-1 && nums[++sentry] == target) {
-                }
-                if(sentry == nums.length-1 && nums[sentry] == target) {
-                    result[matchedCount] = sentry;
-                }else{
-                    result[matchedCount] = sentry-1;
-                }
-                break;
-            }else if(nums[mid]< target){
-                start = mid + 1;
-            }else{
-                end = mid-1;
-            }
+public class Solution{
+    //删除链表中等于给定值val的所有结点
+    static class ListNode{
+        int val;
+        ListNode next;
+        //生成构造方法
+        public ListNode(int val) {
+            this.val = val;
         }
-
-        return result;
-    }
-    public static void main(String[] args){
-        int[] arr = {1,2,2,3,4,5};
-        Solution Solution = new Solution();
-        System.out.println(Arrays.toString(Solution.searchRange(arr,2)));
+        public ListNode removeElements(ListNode head,int val){
+            //删除头部结点和尾部结点逻辑不一样，需要分别对待
+            if(head == null){
+                //链表为空
+                return null;
+            }
+            //1.先删除中间结点的情况(非头部的情况)
+            ListNode prev = head;//prev始终指向cur的前一个位置
+            ListNode cur = head.next;
+            while(cur != null){
+                if(cur.val == val){
+                    //这个结点就需要删除掉
+                    prev.next = cur.next;//这一行代码下来，cur对应的结点就被删掉了
+                    cur = prev.next;//cur指向下一个元素，方便进行下次循环
+                }else{
+                    //这个结点不需要删除
+                    prev = cur;
+                    cur = cur.next;
+                }
+            }
+            //2.最后再考虑删除头结点的情况（放到最后，只需要处理一次即可）
+            if(head.val == val){
+                head = head.next;
+            }
+            return head;
+        }
     }
 }
