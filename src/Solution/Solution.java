@@ -97,5 +97,66 @@ public class Solution{
             }
             return cur;
         }
+        public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+            if(l1 == null){
+                //l1为空，最终结果就是l2
+                return l2;
+            }
+            if(l2 == null){
+                //l2为空，最终结果就是l2
+                return l1;
+            }
+            ListNode newHead = new ListNode(-1);//引入傀儡结点
+            ListNode newTail = newHead;
+            ListNode cur1 = l1;
+            ListNode cur2 = l2;
+            while(cur1 != null &&cur2 != null){
+                if(cur1.val < cur2.val){
+                    //把cur1对应的结点插入到新链表的末尾
+                    //此时需要考虑两种情况，newTail为null和非null的情况
+                    newTail.next = cur1;
+                    newTail = newTail.next;
+                    cur1 = cur1.next;
+                }else{
+                    newTail.next = cur2;
+                    newTail = newTail.next;
+                    cur2 = cur2.next;
+                }
+            }
+            //当循环结束时，意味着当前cur1和cur2一定有一个到达了链表末尾
+            //把另外一个没到末尾的剩下的元素都连接在链表的尾部
+            if(cur1 == null){
+                newTail.next = cur2;
+            }else{
+                newTail.next = cur1;
+            }
+            return newHead.next;
+        }
+        public ListNode partition(ListNode pHead, int x) {
+            if(pHead == null){
+                return null;
+            }
+            if(pHead.next == null){
+                return pHead;
+            }
+            ListNode bigHead = new ListNode(-1);
+            ListNode bigTail = bigHead;
+            ListNode smallHead = new ListNode(-1);
+            ListNode smallTail = smallHead;
+            for(ListNode cur = pHead;cur != null;cur = cur.next){
+                if(cur.val < x){
+                    //插入到smallTail后面，创建新的结点（新的结点的next一定是null）
+                    smallTail.next = new ListNode(cur.val);
+                    smallTail = smallTail.next;
+                }else{
+                    //插入到bigTail的后面
+                    bigTail.next = new ListNode(cur.val);
+                    bigTail = bigTail.next;
+                }
+            }
+            //将两个链表收尾相接到一起
+            smallTail.next = bigHead.next;
+            return smallHead.next;
+        }
     }
 }
