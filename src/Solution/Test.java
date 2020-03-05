@@ -2,9 +2,15 @@ package Solution;
 
 public class Test{
     public static void main(String[] args){
-        Animal animal1 = new Animal("圆圆");
-        animal1.eat("谷子");
-        Animal animal2 = new Bird("扁扁");
-        animal2.eat("谷子");
+        Shape shape1 = new Flower();
+        Shape shape2 = new Cycle();
+        Shape shape3 = new Rect();
+        drawShape(shape1);
+        drawShape(shape2);
+        drawShape(shape3);
+    }
+    //打印图形
+    public static void drawShape(Shape shape){
+        shape.draw();
     }
 }
