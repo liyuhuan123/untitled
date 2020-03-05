@@ -2,11 +2,9 @@ package Solution;
 
 public class Test{
     public static void main(String[] args){
-        Cat cat = new Cat("小黑");
-        cat.eat("猫粮");
-        Bird bird = new Bird("圆圆");
-        bird.fly();
-        Animal animal = new Animal("小动物");
-        System.out.println(animal.name);
+        Animal animal1 = new Animal("圆圆");
+        animal1.eat("谷子");
+        Animal animal2 = new Bird("扁扁");
+        animal2.eat("谷子");
     }
 }
