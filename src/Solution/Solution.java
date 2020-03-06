@@ -8,7 +8,7 @@ public class Solution {
         public ListNode(int val) {
             this.val = val;
         }
-        //1. 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。
+        //7. 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。
         public ListNode deleteDuplication(ListNode pHead)
         {
             if(pHead == null){
@@ -34,7 +34,7 @@ public class Solution {
             }
             return newHead.next;
             }
-            //2.链表的回文结构
+            //8.链表的回文结构
             public boolean chkPalindrome(ListNode A) {
                 if (A == null) {
                     return false;
@@ -74,7 +74,7 @@ public class Solution {
             }
             return size;
             }
-            //3.编写一个程序，找到两个单链表相交的起始节点
+            //9.编写一个程序，找到两个单链表相交的起始节点
             public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
             int sizeA = size(headA);
             int sizeB = size(headB);
@@ -100,7 +100,7 @@ public class Solution {
             }
             return null;
             }
-            //4.给定一个链表，判断该链表是否有环
+            //10.给定一个链表，判断该链表是否有环
             public boolean hasCycle(ListNode head) {
             if(head == null ||head.next == null){
                 return false;
@@ -116,7 +116,7 @@ public class Solution {
             }
             return false;
             }
-            //5.给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null
+            //11.给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null
             public ListNode detectCycle(ListNode head) {
             if(head == null ||head.next == null){
                 return null;
@@ -140,6 +140,6 @@ public class Solution {
                 prev = prev.next;
             }
             return cur;
-            }
+        }
         }
 }
